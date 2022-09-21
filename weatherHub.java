@@ -4,8 +4,8 @@ public class weatherHub {
     
     
    private int knownStations = 0; 
-   private String[] knownWeatherStations = new String[10000000];
-   ArrayList<WeatherHubStorage> weatherHubStorageList = new ArrayList<WeatherHubStorage>();
+   private String[] knownWeatherStations = new String[1000];
+   public ArrayList<WeatherHubStorage> weatherHubStorageList = new ArrayList<WeatherHubStorage>();
 
 
 
@@ -13,7 +13,23 @@ public class weatherHub {
 
  
 
-    public  void receiveData(double[][][][] data, String name, String location) {
+   public void receiveData(double[][][][] data, String name, String location) {
+
+       //is the weather station known?
+       boolean known = false;
+       int output = -1;
+       for (int i = 0; i < knownStations; i++) {
+           if (knownWeatherStations[i].equals(name + location)) {
+               known = true;
+               output = i;
+           }
+       }
+       weatherHubStorageList.get(output).addData(data);
+
+        
+        
+
+
     }
 
     public void setupWeatherStation(String pName, String pLocation) {
@@ -52,4 +68,13 @@ public class weatherHub {
     }
   
     
+    public int countWeatherStations() {
+        System.out.println(knownStations);
+        return knownStations;
+    }
+
+    
+
+
+
 }

@@ -3,7 +3,7 @@ import java.util.Random;
 public class WeatherStation {
     
 
-        //
+        
 
 
 
@@ -24,7 +24,7 @@ public class WeatherStation {
             this.router = router;
             this.name = name;
             this.location = location;
-            this.data = new double[10000000][24][6][1];
+            this.data = new double[1000][24][6][1];
             this.router.addWeatherStation(this);
         }
 
@@ -45,12 +45,9 @@ public class WeatherStation {
     //the pressure is in hPa and is a double between 0 and 1000 and the data type is 5
 
 
-    public double[][][][] measureData() {
+    public void measureData() {
         Random random = new Random();
         //day is the next day to be measured which is the day after the last day that has been measured 
-        
-
-
 
         for (int i = 0; i < 24; i++) {
             data[day][i][0][0] = random.nextDouble() * 146 - 89.2;
@@ -61,10 +58,9 @@ public class WeatherStation {
             data[day][i][5][0] = random.nextDouble() * 1000;
         }
         day++;
-        return data;
+       
     }
-
-
+    
 
     public void sendAllData() {
         // the next function is the sendData function which sends the whole array of

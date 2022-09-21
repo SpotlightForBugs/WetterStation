@@ -1,15 +1,17 @@
 
 public class WeatherHubStorage {
+    private String name;
+    private String location;
 
-
-    private double[][][][] storage = new double[10000000][24][6][1];
-
+    private double[][][][] storage = new double[1000][24][6][1];
 
     public WeatherHubStorage(String pName, String pLocation) {
+        name = pName;
+        location = pLocation;
     }
 
     public void listData() {
-        //print all data in the storage array as long as the day is not null
+        // print all data in the storage array as long as the day is not null
         for (int i = 0; i < storage.length; i++) {
             if (storage[i][0][0][0] != 0) {
                 System.out.println("Day " + i);
@@ -22,24 +24,15 @@ public class WeatherHubStorage {
         }
 
     }
-        
+
     public void addData(double[][][][] data) {
-        //add the data to the storage array
+        // add the data to the storage array
         for (int i = 0; i < 24; i++) {
             for (int j = 0; j < 6; j++) {
                 storage[getDayFromData(data)][i][j][0] = data[getDayFromData(data)][i][j][0];
             }
         }
     }
-
-    
-
-
-
-
-
-
-
 
     public int getDayFromData(double[][][][] data) {
         double day = 0;
@@ -51,7 +44,6 @@ public class WeatherHubStorage {
         return (int) day;
     }
 
-    
     public double[][][][] getData() {
         return storage;
     }
@@ -59,8 +51,11 @@ public class WeatherHubStorage {
     public void setData(double[][][][] data) {
         storage = data;
     }
-        
-    
 
-
+    public String getName() {
+        return name;
+    }
+    public String getLocation() {
+        return location;
+    }
 }
