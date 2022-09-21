@@ -17,14 +17,15 @@ public class weatherHub {
 
        //is the weather station known?
        boolean known = false;
-       int output = -1;
+      
        for (int i = 0; i < knownStations; i++) {
            if (knownWeatherStations[i].equals(name + location)) {
-               known = true;
-               output = i;
+               
+               weatherHubStorageList.get(i).addData(data);
+               System.out.println("Data added to known weather station");
            }
        }
-       weatherHubStorageList.get(output).addData(data);
+       
 
         
         
